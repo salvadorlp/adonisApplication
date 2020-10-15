@@ -6,15 +6,16 @@
     <h1>Editar Post</h1>
     <form action="{{ '/posts/' + post.id + '?_method=PUT' }}" method="POST">
         {{ csrfField() }}
+
         <div class="form-group">
             <label>Título</label>
-        <input type="text" name="title" class="form-control" placeholder="Title" value="{{ post.title }}">
+        <input type="text" name="title" class="form-control" placeholder="Título" value="{{ post.title }}">
         {{ elIf('<span> class="text-danger">$self</span>', getErrorFor('title'), hasErrorFor('title')) }}
         </div>
 
         <div class="form-group">
             <label>Texto</label>
-            <textarea name="body" class="form-control" placeholder="Body">{{ post.body }}</textarea>
+            <textarea name="body" class="form-control" placeholder="Texto">{{ post.body }}</textarea>
             {{ elIf('<span> class="text-danger">$self</span>', getErrorFor('body'), hasErrorFor('body')) }}
         </div>
 

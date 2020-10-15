@@ -39,6 +39,7 @@ class PostController {
     async store({ request, response, session}) {
         // Validate input
         const validation = await validate(request.all(), {
+            author: 'required|min:2|max:30',
             title: 'required|min:3|max:255',
             body: 'required|min:3'
         })
@@ -51,12 +52,13 @@ class PostController {
 
         const post = new Post()
 
+        post.author = request.input('author')
         post.title = request.input('title')
         post.body = request.input('body')
 
         await post.save()
 
-        session.flash({ notification: 'Post Added!' })
+        session.flash({ notification: 'Post Adicionado!' })
 
         return response.redirect('/posts')
     }
@@ -89,7 +91,7 @@ class PostController {
 
         await post.save()
 
-        session.flash({ notification: 'Post Updated!' })
+        session.flash({ notification: 'Post Atualizado!' })
 
         return response.redirect('/posts')
     }
@@ -99,7 +101,7 @@ class PostController {
 
         await post.delete()
 
-        session.flash({ notification: 'Post Deleted!' })
+        session.flash({ notification: 'Post Apagado!' })
 
         return response.redirect('/posts')
     }
