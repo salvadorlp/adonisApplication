@@ -21,30 +21,27 @@ const Route = use('Route')
 
 Route.on('/').render('home')
 
-Route.post("/register", "UserController.register")
+// Must be logged in
+Route.group( () => {
+    // Session
+    Route.get("logout", "SessionController.delete")
 
-// Route.post("/authenticate", "AuthController.authenticate");
+    // Posts
+    Route.get('/posts/add', 'PostController.add')
+    Route.post('/posts', 'PostController.store')
+    Route.get('/posts/edit/:id', 'PostController.edit')
+    Route.put('/posts/:id', 'PostController.update')
+    Route.delete('/posts/:id', 'PostController.destroy')
+}).middleware(["auth"])
 
+// Content access
 Route.get('/posts', 'PostController.index')
-
-Route.get('/test', () => 'Hello World')
-
-Route.get('/posts/add', 'PostController.add')
-
-Route.get('/posts/edit/:id', 'PostController.edit')
-
 Route.get('/posts/:id', 'PostController.details')
 
-Route.post('/posts', 'PostController.store')
+// Register Users
+Route.get("register", "UserController.create")
+Route.post("register", "UserController.store")
 
-Route.put('/posts/:id', 'PostController.update')
-
-Route.delete('/posts/:id', 'PostController.destroy')
-
-// Route.get('/test2', function(){
-//     return 'Hello There';
-// })
-
-// Route.get('/test/:id', function({ params }){
-//     return `This is the id ${params.id}`;
-// })
+// Session
+Route.get("/login", "SessionController.create")
+Route.post("/login", "SessionController.store")

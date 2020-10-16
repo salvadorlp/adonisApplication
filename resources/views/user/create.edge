@@ -1,0 +1,29 @@
+@layout('main')
+
+@section('content')
+  <h1>Criar Conta</h1>
+
+  <form action="/register" method="POST">
+    {{ csrfField() }}
+    {{--  form validation - required fields -format  --}}
+    <div class="form-group">
+      <label>Nome</label>
+      <input type="text" name="username" class="form-control" placeholder="Nome" value="{{ old('username', '') }}">
+      {{ elIf('<span class="text-danger">$self</span>', getErrorFor('username'), hasErrorFor('username')) }}
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="text" name="email" class="form-control" placeholder="Email" value="{{ old('email', '') }}">
+      {{ elIf('<span class="text-danger">$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
+    </div>
+
+    <div class="form-group">
+      <label>Senha</label>
+      <input type="password" name="password" class="form-control" placeholder="Senha">
+      {{ elIf('<span class="text-danger">$self</span>', getErrorFor('password'), hasErrorFor('password')) }}
+    </div>
+
+    <input type="submit" value="Cadastrar" class="btn btn-primary">
+  </form>
+@endsection

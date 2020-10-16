@@ -4,17 +4,10 @@
 const Post = use('App/Models/Post')
 
 // Bring in validator
-
 const { validate } = use('Validator')
 
 class PostController {
     async index({ view }) {
-        
-        // const posts = [
-        //     {title: 'Post one', body: 'This is post one'},
-        //     {title: 'Post two', body: 'This is post two'},
-        //     {title: 'Post three', body: 'This is post three'}
-        // ]
 
         const posts = await Post.all()
 
@@ -39,7 +32,7 @@ class PostController {
     async store({ request, response, session}) {
         // Validate input
         const validation = await validate(request.all(), {
-            author: 'required|min:2|max:30',
+            author: 'required|min:2|max:15',
             title: 'required|min:3|max:255',
             body: 'required|min:3'
         })

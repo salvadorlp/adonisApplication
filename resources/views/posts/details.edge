@@ -10,11 +10,16 @@
 
     <hr>
 
-    <a href="/posts/edit/{{ post.id }}" class="btn btn-dark d-block float-left">Editar</a>
+    @loggedIn
+        <a href="/posts/edit/{{ post.id }}" class="btn btn-dark d-block float-left">Editar</a>
 
-    <form action="{{ '/posts/' + post.id + '?_method=DELETE' }}" method="POST">
-        {{ csrfField() }}
-        <button class="btn btn-danger d-block float-right">Apagar</button>
-    </form>
+        <form action="{{ '/posts/' + post.id + '?_method=DELETE' }}" method="POST">
+            {{ csrfField() }}
+            <button class="btn btn-danger d-block float-right">Apagar</button>
+        </form>
+    @else
+      
+    @endloggedIn
+    
 
 @endsection

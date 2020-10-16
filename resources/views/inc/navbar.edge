@@ -6,15 +6,34 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
+
                 <li class="nav-item">
                     <a class="nav-link" href="/">Início</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/posts">Posts</a>
-                </li> 
-                <li class="nav-item">
-                    <a class="nav-link" href="/posts/add">Adicionar Post</a>
                 </li>
+
+                @loggedIn
+                    <li class="nav-item">
+                        <a class="nav-link" href="/posts/add">Adicionar Post</a>
+                    </li>
+                    <li class="nav-item">
+                        <img class="nav-link" src="https://www.flaticon.com/svg/static/icons/svg/14/14660.svg" alt="asas">
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Sair</a>
+                    </li>
+                @else
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Criar Conta</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Entrar</a>
+                </li>
+                @endloggedIn
+                
+
             </ul>
         </div>
     </div>

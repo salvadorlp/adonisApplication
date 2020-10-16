@@ -1,0 +1,29 @@
+@layout('main')
+
+@section('content')
+  <h1>Entrar</h1>
+
+  @if(old('notification'))
+    <div class="alert alert-danger">
+      {{ old('notification') }}
+    </div>
+  @endif
+
+  <form action="/login" method="POST">
+    {{ csrfField() }}
+
+    <div class="form-group">
+      <label for="">Email</label>
+      <input type="text" name="email" class="form-control" placeholder="Email" value="{{ old('email', '') }}">
+      {{ elIf('<span class="text-danger">$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
+    </div>
+
+    <div class="form-group">
+      <label for="">Senha</label>
+      <input type="password" name="password" class="form-control" placeholder="Senha">
+      {{ elIf('<span class="text-danger">$self</span>', getErrorFor('password'), hasErrorFor('password')) }}
+    </div>
+
+    <input type="submit" value="Entrar" class="btn btn-primary">
+  </form>
+@endsection
