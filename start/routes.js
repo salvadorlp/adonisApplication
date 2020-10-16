@@ -1,6 +1,7 @@
 'use strict'
 
 const PostController = require('../app/Controllers/Http/PostController')
+// const { route } = require('@adonisjs/framework/src/Route/Manager')
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,10 @@ const PostController = require('../app/Controllers/Http/PostController')
 const Route = use('Route')
 
 Route.on('/').render('home')
+
+Route.post("/register", "UserController.register")
+
+// Route.post("/authenticate", "AuthController.authenticate");
 
 Route.get('/posts', 'PostController.index')
 
