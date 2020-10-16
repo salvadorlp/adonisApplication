@@ -2,6 +2,7 @@
 
 // Bring in model
 const Post = use('App/Models/Post')
+const User = use('App/Models/User')
 
 // Bring in validator
 const { validate } = use('Validator')
@@ -29,10 +30,9 @@ class PostController {
         return view.render('posts.add')
     }
 
-    async store({ request, response, session}) {
+    async store({ request, response, session, auth}) {
         // Validate input
         const validation = await validate(request.all(), {
-            author: 'required|min:2|max:15',
             title: 'required|min:3|max:255',
             body: 'required|min:3'
         })
@@ -45,7 +45,7 @@ class PostController {
 
         const post = new Post()
 
-        post.author = request.input('author')
+        post.author = auth.user.username
         post.title = request.input('title')
         post.body = request.input('body')
 

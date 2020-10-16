@@ -31,7 +31,7 @@ class UserController {
 
         session.flash({ notification: "User created successfully" })
 
-        return response.redirect("/")
+        return response.redirect("/login")
     }
 }
 

@@ -38,6 +38,7 @@ class SessionController {
           session.flash({ notification: "Login feito com sucesso" })
           return response.redirect("/")
           // try: send which user is
+          //   const token = await auth.attempt(email, password)
     }
 
     async delete({ response, session, auth }){
