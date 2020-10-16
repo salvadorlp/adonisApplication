@@ -11,14 +11,16 @@
     <hr>
 
     @loggedIn
-        <a href="/posts/edit/{{ post.id }}" class="btn btn-dark d-block float-left">Editar</a>
+            @if(post.author == auth.user.username)
 
-        <form action="{{ '/posts/' + post.id + '?_method=DELETE' }}" method="POST">
-            {{ csrfField() }}
-            <button class="btn btn-danger d-block float-right">Apagar</button>
-        </form>
+                <a href="/posts/edit/{{ post.id }}" class="btn btn-dark d-block float-left">Editar</a>
+
+                <form action="{{ '/posts/' + post.id + '?_method=DELETE' }}" method="POST">
+                    {{ csrfField() }}
+                    <button class="btn btn-danger d-block float-right">Apagar</button>
+            </form>
+            @endif
     @else
-      
     @endloggedIn
     
 

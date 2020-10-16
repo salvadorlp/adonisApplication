@@ -3,22 +3,29 @@
 @section('content')
     <a href="/posts">Voltar</a>
     <hr>
+    
     <h1>Editar Post</h1>
-    <form action="{{ '/posts/' + post.id + '?_method=PUT' }}" method="POST">
-        {{ csrfField() }}
+    @if(post.author == auth.user.username)
+        <form action="{{ '/posts/' + post.id + '?_method=PUT' }}" method="POST">
+            {{ csrfField() }}
 
-        <div class="form-group">
-            <label>Título</label>
-        <input type="text" name="title" class="form-control" placeholder="Título" value="{{ post.title }}">
-        {{ elIf('<span class="text-danger">$self</span>', getErrorFor('title'), hasErrorFor('title')) }}
-        </div>
+            <div class="form-group">
+                <label>Título</label>
+            <input type="text" name="title" class="form-control" placeholder="Título" value="{{ post.title }}">
+            {{ elIf('<span class="text-danger">$self</span>', getErrorFor('title'), hasErrorFor('title')) }}
+            </div>
 
-        <div class="form-group">
-            <label>Texto</label>
-            <textarea name="body" class="form-control" placeholder="Texto">{{ post.body }}</textarea>
-            {{ elIf('<span class="text-danger">$self</span>', getErrorFor('body'), hasErrorFor('body')) }}
-        </div>
+            <div class="form-group">
+                <label>Texto</label>
+                <textarea name="body" class="form-control" placeholder="Texto">{{ post.body }}</textarea>
+                {{ elIf('<span class="text-danger">$self</span>', getErrorFor('body'), hasErrorFor('body')) }}
+            </div>
 
-        <button class="btn btn-primary" type="submit">Postar</button>
-    </form>
+            <button class="btn btn-primary" type="submit">Postar</button>
+        </form>
+    @else
+        <p>Você não pode editar esse post porque não o escreveu!</p>
+
+    @endif
+    
 @endsection
