@@ -14,10 +14,22 @@
         </div>
 
         <div class="form-group">
+            <label for="category">Categoria</label>
+            <select name="category" class="form-control" id="category" required>
+                <option disabled value="">Escolha uma Opção</option>
+                <option value="general">Geral</option>
+                <option value="technology">Tecnologia</option>
+                <option value="entertainment">Entretenimento</option>
+                <option value="math">Matemática</option>
+            </select>
+        </div>
+
+        <div class="form-group">
             <label>Texto</label>
             <textarea name="body" class="form-control" placeholder="Texto">{{ old('body', '') }}</textarea>
             {{ elIf('<span class="text-danger">$self</span>', getErrorFor('body'), hasErrorFor('body')) }}
         </div>
+
 
         <button class="btn btn-primary" type="submit">Postar</button>
     </form>

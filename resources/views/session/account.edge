@@ -1,0 +1,13 @@
+@layout('main')
+
+@section('content')
+    <a href="/">Voltar</a>
+    <hr>
+    <h1>Dados</h1>
+    <ul class="list-group">
+        <li class="list-group-item">Usuário...: {{ auth.username }}</li>
+        <li class="list-group-item">Email.....: {{ auth.email }}</li>
+        <li class="list-group-item">Senha.....: *</li>
+        {{-- colocar número de posts e quais posts são --}}
+    </ul>
+@endsection

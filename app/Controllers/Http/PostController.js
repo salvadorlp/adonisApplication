@@ -13,7 +13,7 @@ class PostController {
         const posts = await Post.all()
 
         return view.render('posts.index', {
-            title: 'Latest Posts',
+            title: 'Posts Recentes',
             posts: posts.toJSON()
         })
     }
@@ -25,6 +25,19 @@ class PostController {
             post: post
         })
     }
+
+    // async filter({ request, view }) {
+
+    //     const posts = await Post.All()
+
+    //     const categ = request.input('category')
+
+    //     return view.render('posts.filter', {
+    //         posts: posts.toJSON(),
+    //         // categ: categ -> não sei se isso vai funcionar
+    //         categ
+    //     })
+    // }
 
     async add({ view }) {
         return view.render('posts.add')
@@ -48,6 +61,7 @@ class PostController {
         post.author = auth.user.username
         post.title = request.input('title')
         post.body = request.input('body')
+        post.category = request.input('category')
 
         await post.save()
 
@@ -81,6 +95,7 @@ class PostController {
 
         post.title = request.input('title')
         post.body = request.input('body')
+        post.category = request.input('category')
 
         await post.save()
 

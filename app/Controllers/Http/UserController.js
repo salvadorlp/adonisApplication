@@ -11,7 +11,7 @@ class UserController {
         return view.render("user.create");
     }
 
-    async store({ request, response, auth, session }){
+    async store({ request, response, session }){
         // Validate input
         const validation = await validate(request.all(), {
             username: 'required|min:2|max:15|unique:users,username',
@@ -29,9 +29,9 @@ class UserController {
         
         const user = await User.create(data)
 
-        session.flash({ notification: "User created successfully" })
+        session.flash({ notification: "Cadastro realizado com sucesso!" })
 
-        return response.redirect("/login")
+        return response.redirect("/")
     }
 }
 

@@ -1,7 +1,23 @@
 @layout('main')
 
 @section('content')
-    <h1>Posts Recentes</h1>
+    <h1>{{ title }}</h1>
+{{--  
+    <form action="/posts/filter/ {{ category }}" method="GET">
+
+        <div class="form-group">
+            <label for="category">Categoria</label>
+            <select name="category" class="form-control" id="category" required>
+                <option disabled value="">Escolha uma Opção</option>
+                <option value="general">Geral</option>
+                <option value="technology">Tecnologia</option>
+                <option value="entertainment">Entretenimento</option>
+                <option value="math">Matemática</option>
+            </select>
+            <br>
+            <button class="btn btn-primary" type="submit">Filtrar</button>
+        </div>
+    </form>  --}}
     
     {{--  notification when a post is modified  --}}
     @if(old('notification'))
@@ -12,7 +28,7 @@
 
     <ul class="list-group">
         @each(post in posts)
-            <li class="list-group-item"><a href="/posts/{{ post.id }}">{{ post.title }}</a> <b style="float: right">{{ post.author }} </b></li>
+            <li class="list-group-item"><a href="/posts/{{ post.id }}">{{ post.title }}</a> <b>Categoria:</b> <span>{{ post.category }}</span> <b style="float: right">{{ post.author }} </b></li>
         @endeach
     </ul>
 @endsection

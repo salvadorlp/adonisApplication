@@ -10,6 +10,7 @@ class PostsSchema extends Schema {
       table.string('author')
       table.string('title')
       table.string('body')
+      table.string('category')
       table.timestamps()
     })
   }

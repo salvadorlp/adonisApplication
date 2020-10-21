@@ -47,6 +47,14 @@ class SessionController {
 
     return response.redirect("/")
     }
+
+    async account({ view, auth }){
+        auth = auth.user
+
+        return view.render("session.account", {
+            auth: auth
+        })
+    }
 }
 
 module.exports = SessionController

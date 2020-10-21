@@ -18,9 +18,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/posts/add">Adicionar Post</a>
                     </li>
+                    
                     <li class="nav-item">
-                        <img class="nav-link" src="https://www.flaticon.com/svg/static/icons/svg/14/14660.svg" alt="asas">
+                        <svg class="nav-link" width="40" height="40">
+                            @inlineSvg('user-profile')
+                        </svg>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="/account" class="nav-link" style="color:black">{{auth.user.username}}</a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">Sair</a>
                     </li>

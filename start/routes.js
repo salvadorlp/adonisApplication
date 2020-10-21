@@ -25,6 +25,7 @@ Route.on('/').render('home')
 Route.group( () => {
     // Session
     Route.get("logout", "SessionController.delete")
+    Route.get('/account', 'SessionController.account')
 
     // Posts
     Route.get('/posts/add', 'PostController.add')
@@ -37,6 +38,10 @@ Route.group( () => {
 // Content access
 Route.get('/posts', 'PostController.index')
 Route.get('/posts/:id', 'PostController.details')
+
+// Filters & Categories
+// Route.get('/posts/filter/:category', 'PostController.filter')
+// Route.get('/posts/:category', 'PostController.filter')
 
 // Register Users
 Route.get("register", "UserController.create")
